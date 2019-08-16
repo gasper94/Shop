@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-// importing Logo
+// importing Logo. This is a specific syntax.
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 // Style sheet
@@ -15,6 +15,7 @@ const Header = () => (
         <div className='options'>
             <Link className='option' to='/shop'>SHOP</Link>
             <Link className='shop' to='/'>CONTACT</Link>
+            <Link className='option' to='signin'>SIGN IN</Link>
         </div>
     </div>
 );
