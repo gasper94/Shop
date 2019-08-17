@@ -1,4 +1,5 @@
 import React from 'react';
+import { signInWithGoogle} from '../..//firebase/firebase.utils';
 
 // Components
 import FormInput from '../form-input/form-input.jsx';
@@ -6,6 +7,8 @@ import CustomButton from '../custom-buttom/custom-buttom.jsx';
 
 // Styles
 import '../sign-in/sign-in.styles.scss';
+
+
 
 // We need to use a class component because we need to
 // store what the user is typing.
@@ -51,7 +54,7 @@ class SignIn extends React.Component{
                         value={this.state.email}
                         handleChange ={this.handleChange} 
                         label='Email'
-                        required 
+                        
                     />
 
                     {/* Password */}
@@ -61,10 +64,14 @@ class SignIn extends React.Component{
                         value={this.state.password} 
                         handleChange ={this.handleChange}
                         label ='Password'
-                        required
+                        
                     />
 
-                    <CustomButton type='submit' >Sign In</CustomButton>
+                    <div className='buttons'>
+                        <CustomButton type='submit' >Sign In</CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with google</CustomButton>
+                    </div>
+                    
                 </form>
             </div>
         )
