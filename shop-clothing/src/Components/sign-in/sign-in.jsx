@@ -25,11 +25,11 @@ class SignIn extends React.Component{
     }
 
     // Prevents from firing submit
-    handleSubmit = event => {{
+    handleSubmit = event => {
         event.preventDefault();
 
         this.setState({email:'' , password: ''})
-    }}
+    }
 
     // Dynamically updating app state by user input
     handleChange = event => {

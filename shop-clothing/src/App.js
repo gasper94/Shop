@@ -6,10 +6,10 @@ import { Switch, Route} from "react-router-dom";
 import HomePage from './Pages/homepage/homepage.jsx';
 import ShopPage from './Pages/shop/shop.jsx';
 import Header from './Components/header/header.jsx';
-import SignInAndSignOut from './Pages/sign-in-and-sign-out/sign-in-and-sign-out';
+import SignInAndSignOut from './Pages/sign-in-and-sign-up/sign-in-and-sign-up';
 
 // Firebase
-import {auth} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 import './App.css';
 
@@ -27,10 +27,22 @@ class App extends React.Component {
 
   componentDidMount() {
     // Open subscription: connection with the firebase server. (must be closed for memory leaks)
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      
+      if(userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        })
+      }else{
+        this.setState({currentUser: userAuth});
+      }
 
-      console.log(user);
     });
   }
 
