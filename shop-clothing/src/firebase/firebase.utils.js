@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 
+// Firebase Configuration.
 const config = {
     apiKey: "AIzaSyAs8mDGqgDCsv-2IN7KGHUieA4b9YoOpIQ",
     authDomain: "e-commerce-e6092.firebaseapp.com",
@@ -42,23 +43,22 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-
+// 1. Initialize Firebase
 firebase.initializeApp(config);
 
-// Exporting to use anywhere where 
+// 2. Create an instance of the google provider object.
+const provider  = new  firebase.auth.GoogleAuthProvider();
+
+// 3. Trigger google pop up when authenticationg
+provider.setCustomParameters({prompt: 'select_account'});
+
+// 4. Authenticate with Firebase using the google provider object.
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+// Exporting to use anywhere in our app where 
 // user authentication is needed.
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
-
-
-// google authentication utility
-const provider  = new  firebase.auth.GoogleAuthProvider();
-
-// Trigger google pop up when authenticationg
-provider.setCustomParameters({prompt: 'select_account'});
-
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
 export default firebase;
 
 
