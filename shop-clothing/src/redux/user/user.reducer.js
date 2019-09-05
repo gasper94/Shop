@@ -1,11 +1,15 @@
+import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
     currentUser: null
 }
 
+// Object that gets a State object and an action
+// if we detect a desired action then current user
+// will be updated
 const userReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
-        case 'SET_CURRENT_USER':
+        case UserActionTypes.SET_CURRENT_USER:
             return{
                 ...state,
                 currentUser: action.payload
