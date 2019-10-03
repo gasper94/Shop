@@ -1,4 +1,4 @@
-## Ecommerce Website
+## E-commerce Website
 
 ## Homepage
 ![homepage](https://user-images.githubusercontent.com/18272791/66101465-c8820d00-e563-11e9-8499-1e2cba784ce0.jpg)
